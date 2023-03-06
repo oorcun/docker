@@ -18,6 +18,19 @@ services:
             - type: bind
               source: .
               target: /srv/laravel
+    postgres:
+        environment:
+            POSTGRES_PASSWORD: RAjmpEr6zL7wBBNYX9Xp8FIKorU4kLFf
+        image: postgres:15.2
+        networks:
+            - laravel
+    adminer:
+        image: adminer:4.8.1
+        networks:
+            - laravel
+        ports:
+            - target: 8080
+              published: 8080
 
 networks:
     laravel:
