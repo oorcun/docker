@@ -21,9 +21,14 @@ services:
     postgres:
         environment:
             POSTGRES_PASSWORD: RAjmpEr6zL7wBBNYX9Xp8FIKorU4kLFf
+            POSTGRES_DB: laravel
         image: postgres:15.2
         networks:
             - laravel
+        volumes:
+            - type: volume
+              source: postgres
+              target: /var/lib/postgresql/data
     adminer:
         image: adminer:4.8.1
         networks:
@@ -34,3 +39,6 @@ services:
 
 networks:
     laravel:
+
+volumes:
+    postgres:
