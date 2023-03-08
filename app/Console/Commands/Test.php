@@ -12,7 +12,7 @@ class Test extends Command
      *
      * @var string
      */
-    protected $signature = 'test';
+    protected $signature = 'test {operation}';
 
     /**
      * The console command description.
@@ -26,8 +26,10 @@ class Test extends Command
      */
     public function handle(): void
     {
-        $value = Cache::get("key", "value");
-
-        dump($value);
+        if ($this->argument("operation") == "get") {
+            dump(Cache::get("key"));
+        } else if ($this->argument("operation") == "put") {
+            Cache::put("key", "value");
+        }
     }
 }
