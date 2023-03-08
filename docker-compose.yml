@@ -3,6 +3,7 @@ services:
         build:
             context: ./.docker
             dockerfile: nginx.Dockerfile
+        container_name: nginx
         networks:
             - laravel
         ports:
@@ -12,6 +13,7 @@ services:
         build:
             context: .
             dockerfile: .docker/php.Dockerfile
+        container_name: php
         networks:
             - laravel
         volumes:
@@ -19,6 +21,7 @@ services:
               source: .
               target: /srv/laravel
     postgres:
+        container_name: postgres
         environment:
             POSTGRES_PASSWORD: RAjmpEr6zL7wBBNYX9Xp8FIKorU4kLFf
             POSTGRES_DB: laravel
@@ -30,6 +33,7 @@ services:
               source: postgres
               target: /var/lib/postgresql/data
     adminer:
+        container_name: adminer
         image: adminer:4.8.1
         networks:
             - laravel
