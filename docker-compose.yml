@@ -16,6 +16,7 @@ services:
         container_name: php
         networks:
             - laravel
+        user: $DOCKER_USER_ID:$DOCKER_GROUP_ID
         volumes:
             - type: bind
               source: .
@@ -23,9 +24,9 @@ services:
     postgres:
         container_name: postgres
         environment:
-            POSTGRES_PASSWORD: RAjmpEr6zL7wBBNYX9Xp8FIKorU4kLFf
+            POSTGRES_PASSWORD: $DB_PASSWORD
             POSTGRES_DB: laravel
-        image: postgres:15.2
+        image: postgres:15.2-bullseye
         networks:
             - laravel
         volumes:
@@ -34,12 +35,17 @@ services:
               target: /var/lib/postgresql/data
     adminer:
         container_name: adminer
-        image: adminer:4.8.1
+        image: adminer:4.8.1-standalone
         networks:
             - laravel
         ports:
             - target: 8080
               published: 8080
+    redis:
+        container_name: redis
+        image: redis:7.0.9-bullseye
+        networks:
+            - laravel
 
 networks:
     laravel:
