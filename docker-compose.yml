@@ -46,6 +46,14 @@ services:
         image: redis:7.0.9-bullseye
         networks:
             - laravel
+    redisinsight:
+        container_name: redisinsight
+        image: redislabs/redisinsight:1.13.1
+        networks:
+            - laravel
+        ports:
+            - target: 8001
+              published: 8001
 
 networks:
     laravel:
