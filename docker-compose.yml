@@ -1,19 +1,15 @@
 services:
     nginx:
-        build:
-            context: ./.docker
-            dockerfile: nginx.Dockerfile
         container_name: nginx
+        image: oorcun/laravel:nginx
         networks:
             - laravel
         ports:
             - target: 80
               published: 8000
     php:
-        build:
-            context: .
-            dockerfile: .docker/php.Dockerfile
         container_name: php
+        image: oorcun/laravel:php
         networks:
             - laravel
         user: $DOCKER_USER_ID:$DOCKER_GROUP_ID
