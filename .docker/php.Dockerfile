@@ -12,7 +12,7 @@ RUN apt install -y libzip-dev
 RUN docker-php-ext-install zip
 RUN rm -rf /srv
 COPY . .
-RUN cp .env.example .env
+RUN cp .env.local .env
 COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 RUN composer install
 RUN php artisan key:generate
