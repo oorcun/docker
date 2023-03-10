@@ -16,7 +16,3 @@ RUN cp .env.local .env
 COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 RUN composer install
 RUN php artisan key:generate
-RUN chmod o+w storage/logs
-RUN chmod o+w bootstrap/cache
-RUN chmod o+w storage/framework/sessions
-RUN chmod o+w storage/framework/views
