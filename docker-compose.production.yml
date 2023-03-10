@@ -1,0 +1,38 @@
+services:
+    nginx:
+        container_name: nginx
+        image: oorcun/laravel:nginx
+        networks:
+            - laravel
+        ports:
+            - target: 80
+              published: 80
+    php:
+        container_name: php
+        image: oorcun/laravel:php
+        networks:
+            - laravel
+        user: $DOCKER_USER_ID:$DOCKER_GROUP_ID
+    postgres:
+        container_name: postgres
+        environment:
+            POSTGRES_PASSWORD: $DB_PASSWORD
+            POSTGRES_DB: laravel
+        image: postgres:15.2-bullseye
+        networks:
+            - laravel
+        volumes:
+            - type: volume
+              source: postgres
+              target: /var/lib/postgresql/data
+    redis:
+        container_name: redis
+        image: redis:7.0.9-bullseye
+        networks:
+            - laravel
+
+networks:
+    laravel:
+
+volumes:
+    postgres:
