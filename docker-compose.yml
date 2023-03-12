@@ -21,7 +21,6 @@ services:
         container_name: postgres
         environment:
             POSTGRES_PASSWORD: $DB_PASSWORD
-            POSTGRES_DB: laravel
         image: postgres:15.2-bullseye
         networks:
             - laravel
@@ -31,6 +30,8 @@ services:
               target: /var/lib/postgresql/data
     adminer:
         container_name: adminer
+        environment:
+            ADMINER_DEFAULT_SERVER: postgres
         image: adminer:4.8.1-standalone
         networks:
             - laravel

@@ -25,7 +25,6 @@ services:
         container_name: postgres
         environment:
             POSTGRES_PASSWORD: $DB_PASSWORD
-            POSTGRES_DB: laravel
         image: postgres:15.2-bullseye
         networks:
             - laravel
@@ -33,27 +32,11 @@ services:
             - type: volume
               source: postgres
               target: /var/lib/postgresql/data
-    adminer:
-        container_name: adminer
-        image: adminer:4.8.1-standalone
-        networks:
-            - laravel
-        ports:
-            - target: 8080
-              published: 8080
     redis:
         container_name: redis
         image: redis:7.0.9-bullseye
         networks:
             - laravel
-    redisinsight:
-        container_name: redisinsight
-        image: redislabs/redisinsight:1.13.1
-        networks:
-            - laravel
-        ports:
-            - target: 8001
-              published: 8001
 
 networks:
     laravel:
