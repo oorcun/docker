@@ -12,7 +12,10 @@ services:
         image: oorcun/laravel:php-production
         networks:
             - laravel
-        user: $DOCKER_USER_ID:$DOCKER_GROUP_ID
+        volumes:
+            - type: bind
+              source: .env
+              target: /srv/laravel/.env
     postgres:
         container_name: postgres
         environment:

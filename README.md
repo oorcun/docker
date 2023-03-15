@@ -18,6 +18,6 @@ To run in production:
 ```
 wget https://raw.githubusercontent.com/oorcun/docker/master/docker-compose.production.yml
 cat > .env # Copy .env file
-printf "\nDOCKER_USER_ID=$(id -u)\nDOCKER_GROUP_ID=$(id -g)\n" >> .env
 docker compose -f docker-compose.production.yml up -d
+docker exec php php artisan config:cache
 ```
