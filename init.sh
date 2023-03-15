@@ -1,4 +1,4 @@
-git clone https://github.com/oorcun/docker.git new
+git clone git@github.com:oorcun/docker.git new
 cd new
 docker run -d --name php oorcun/laravel:php
 docker cp php:/srv/laravel/.env .env
