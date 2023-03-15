@@ -12,8 +12,12 @@ RUN apt install -y libzip-dev
 RUN docker-php-ext-install zip
 RUN rm -rf /srv
 COPY . .
-RUN cp .env.local .env
+RUN cp .env.production .env
 COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 RUN composer install
 RUN php artisan key:generate
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+RUN composer install --optimize-autoloader --no-dev
+RUN php artisan config:cache
+RUN php artisan route:cache
+RUN php artisan event:cache
