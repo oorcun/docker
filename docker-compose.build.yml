@@ -1,11 +1,13 @@
 services:
     nginx:
         build:
-            context: ./.docker
-            dockerfile: nginx.Dockerfile
+            context: .
+            dockerfile: .docker/Dockerfile
+            target: nginx
         container_name: nginx
     php:
         build:
             context: .
-            dockerfile: .docker/php.Dockerfile
+            dockerfile: .docker/Dockerfile
+            target: php
         container_name: php

@@ -1,20 +1,15 @@
 services:
     nginx:
-        build:
-            context: .
-            dockerfile: .docker/Dockerfile
-            target: nginx
         container_name: nginx
+        image: oorcun/laravel:nginx
         networks:
             - laravel
         ports:
             - target: 80
               published: 8000
     php:
-        build:
-            context: .
-            dockerfile: .docker/Dockerfile
         container_name: php
+        image: oorcun/laravel:php
         networks:
             - laravel
         user: $DOCKER_USER_ID:$DOCKER_GROUP_ID
@@ -51,9 +46,9 @@ services:
         image: redis:7.0.9-bullseye
         networks:
             - laravel
-        # ports:
-        #     - target: 6379
-        #       published: 6379
+        ports:
+            - target: 6379
+              published: 6379
 
 networks:
     laravel:

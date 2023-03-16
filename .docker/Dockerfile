@@ -16,5 +16,3 @@ RUN apt install -y unzip
 RUN apt install -y p7zip-full
 RUN docker-php-ext-install zip
 COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
-# RUN rm -rf /srv
-# COPY . .
