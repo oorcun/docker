@@ -20,6 +20,6 @@ COPY --from=composer:2.5.4 /usr/bin/composer /usr/bin/composer
 FROM php AS php-production
 COPY . .
 RUN composer install --optimize-autoloader --no-dev
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN php artisan route:cache
 RUN php artisan event:cache
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
