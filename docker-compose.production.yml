@@ -9,7 +9,7 @@ services:
               published: 80
     php:
         container_name: php
-        image: oorcun/laravel:php-production
+        image: oorcun/laravel:php
         networks:
             - laravel
         volumes:

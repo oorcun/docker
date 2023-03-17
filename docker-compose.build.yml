@@ -9,5 +9,5 @@ services:
         build:
             context: .
             dockerfile: .docker/Dockerfile
-            target: php
+            target: php-production
         container_name: php

@@ -3,7 +3,7 @@
 
 Create a compose file and init script where developers work anywhere without needing to install anything.
 Create a compose file for production environment.
-Create a compose file for building.
+Create a compose file for production building.
 
 ## Run
 

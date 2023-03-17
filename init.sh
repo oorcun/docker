@@ -1,12 +1,8 @@
 git clone git@github.com:oorcun/docker.git new
 cd new
-docker run -d --name php oorcun/laravel:php
-docker cp php:/srv/laravel/.env .env
-docker cp php:/srv/laravel/vendor vendor
-docker rm -f php
+cp .env.local .env
 printf "\nDOCKER_USER_ID=$(id -u)\nDOCKER_GROUP_ID=$(id -g)\n" >> .env
-chmod o+w storage/logs
-chmod o+w bootstrap/cache
-chmod o+w storage/framework/sessions
-chmod o+w storage/framework/views
+docker compose up -d
+docker exec php composer install
+docker exec php php artisan key:generate
 rm ../init.sh
